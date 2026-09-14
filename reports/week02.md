@@ -34,7 +34,7 @@ Ensimmäiseksi hankittiin tietoa järjestelmän nimestä komennolla **snmpget -v
 
 ![Komentotuloste](images/sysname.png)
 
-Seuraavaksi haettiin tarkempaa tietoa järjestelmästä. Tulosteesta selviää, että käytössä on Linux-käyttöjärjestelmä Windpowsin WSL 2-ympäristössä ja kernelin versio 6.18.33.2, SMP PREEMPT_DYNAMIC.
+Seuraavaksi haettiin tarkempaa tietoa järjestelmästä. Tulosteesta selviää, että käytössä on Linux-käyttöjärjestelmä Windowsin WSL 2-ympäristössä ja kernelin versio 6.18.33.2, SMP PREEMPT_DYNAMIC.
 
 ![Komentotuloste](images/sysdescr.png)
 
