@@ -1,0 +1,1 @@
+{"changed": false, "msg": "Data could not be sent to remote host \"clab-hamk-verkonhallinta-golden-cadvisor\". Make sure this host can be reached over ssh: ssh: connect to host clab-hamk-verkonhallinta-golden-cadvisor port 22: Connection refused\r\n", "unreachable": true}

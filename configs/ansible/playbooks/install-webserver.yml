@@ -1,0 +1,41 @@
+---
+- name: Install Web-server
+  hosts: web1
+  become: true
+
+  vars:
+    html_content: Server name = web1
+
+  tasks:
+
+    - name: Update package cache
+      apt:
+        update_cache: yes
+
+    - name: Install Apache2 packages
+      apt:
+        name: apache2
+        state: present
+
+    - name: Create index.html
+      ansible.builtin.copy:
+        dest: /var/www/html/index.html
+        content: <h1>{{ html_content }}</h1>
+
+    - name: Enable Apache2 service
+      ansible.builtin.service:
+        name: apache2
+        enabled: yes
+        state: started
+        use: sysvinit
+
+    - name: Verify the installation
+      ansible.builtin.uri:
+        url: http://localhost
+        status_code: 200
+
+    - name: Show verification result
+      debug:
+        msg: "Apache2 installed successfully"
+
+
