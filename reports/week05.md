@@ -15,7 +15,7 @@ Avattiin paketti ja Ipv6-osion alta löytyi kohdeosoitteeseen liittyvä GeoIP-ti
 
 ### Liikenteen kaappaaminen learn.hamk.fi:stä
 
-Kaapattiin jälleen liikennettä Wiresharkilla. Kirjauduttiin osoitteeseen learn.hamk.fi.
+Kaapattiin jälleen liikennettä Wiresharkilla. Kirjauduttiin osoitteeseen **learn.hamk.fi**.
 
 Selvitettiin DNS-kyselyn vastauksen IP-osoite. Ensin suodatettiin liikennettä komennolla **dns.qry.name contains "learn.hamk.fi"**. Avattiin Standard query response -paketti ja sen sisältä Domain Name System -osio. Sieltä selvisi seuraavat tiedot:\
 IP-osoite: 192.148.239.84\
