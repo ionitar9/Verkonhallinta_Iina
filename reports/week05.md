@@ -2,7 +2,7 @@
 
 ## Osa 1
 
-### Liikenteen kaappaminen yle.fi:stä
+### Liikenteen kaappaaminen yle.fi:stä
 
 Alettiin kaappaamaan liikennettä Wiresharkilla ja mentiin https://www.yle.fi verkkosivulle. 
 Suodatettiin liikennettä 'port 443' -Capture filtterillä, sillä haluttiiin nimenomaan seurata https-liikennettä.
@@ -17,13 +17,13 @@ Avattiin paketti ja Ipv6-osion alta löytyi kohdeosoitteeseen liittyvä GeoIP-ti
 
 Kaapattiin jälleen liikennettä Wiresharkilla. Kirjauduttiin osoitteeseen learn.hamk.fi.
 
-Selvitettiin DNS-kyselyn vastauksen IP-osoite. Ensin suodatettiin liikennettä komennolla **dns.qry.name contains "learn.hamk.fi"**. Avattiin Standard query response -paketti ja sen sisältä Domain Name System -osio. Sieltä selvisi seuraavat tiedot.
-Ip:osoite 192.148.239.84
+Selvitettiin DNS-kyselyn vastauksen IP-osoite. Ensin suodatettiin liikennettä komennolla **dns.qry.name contains "learn.hamk.fi"**. Avattiin Standard query response -paketti ja sen sisältä Domain Name System -osio. Sieltä selvisi seuraavat tiedot:\
+IP-osoite: 192.148.239.84\
 TTL: 1129 (18 minutes, 49 seconds)
 
-Autoratiiviset DNS-palvelimet selvitettiin toisesta Standard query response -paketista, josta löysin osion Authoritative nameservers. Sieltä selvisi ns1.hamk.fi
+Autoratiiviset DNS-palvelimet selvitettiin toisesta Standard query response -paketista, josta löysin osion Authoritative nameservers. Autoratiivinen DNS-palvelin on ns1.hamk.fi.
 
-Salattu yhteys muodostetaan TLS-kättelyllä. TLS-kättely muodostuu erivaiheista. ClientHello-viestissä selain ehdottaa mm. eri TLS-versioita, salausalgoritmeja (cipher suites), SNI:tä ja ALPN:ää. ServerHello-viestissä palvelin tekee niistä päätöksen.
+Salattu yhteys muodostetaan TLS-kättelyllä. TLS-kättely muodostuu eri vaiheista. ClientHello-viestissä selain ehdottaa mm. eri TLS-versioita, salausalgoritmeja (cipher suites), SNI:tä ja ALPN:ää. ServerHello-viestissä palvelin tekee niistä päätöksen.
 
 Suodatettiin liikennettä komennolla **tlS** ja **ssl.handshake.ciphersuite**. Molemmilla hauilla löydettiiin ClientHello ja ServerHello -paketit learn.hamk.fi-yhteydelle. Selvisi, että learn.hamk.fi-yhteydessä käytetään TLSv1.3 protokollaa. ClientHello-paketin sisältä Transport Layer Security -osion sisältä löytyi selaimen ehdottamat 16 salausalgoritmiä (listattu alla). ServerHello -paketista selviää, että käytetty salausalgoritmi on **Cipher Suite: TLS_AES_128_GCM_SHA256 (0x1301)**.
 
